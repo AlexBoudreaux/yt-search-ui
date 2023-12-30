@@ -1,10 +1,12 @@
 body, html {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Inter', sans-serif;
   height: 100%; /* Ensure the gradient covers the full height */
   background: linear-gradient(to bottom right, #F8F8FC, #E1E2E8); /* Diagonal gradient */
+  background-attachment: fixed; /* Add this line to fix the background */
 }
+
 
 #root, .App {
   min-height: 100vh; /* Ensure the App fills the viewport height */
@@ -39,7 +41,7 @@ body, html {
   border: none;
   border-radius: 30px; /* Rounded corners */
   background: inherit; /* Inherits the neumorphic design */
-  color: #333; /* Darker text for better readability */
+  color: #575F6B; /* Darker text for better readability */
 }
 
 .search-input:focus {
@@ -54,7 +56,7 @@ body, html {
   background: linear-gradient(145deg, #E5E6EC , #F2F3F6); /* Match the body background */
   box-shadow: inset 1px 1px 15px #bebebe, /* Inset shadow for a pressed effect */
              inset -8px -8px 15px #ffffff;
-  color: #333; /* Darker text for better readability */
+  color: #575F6B; /* Darker text for better readability */
   cursor: pointer;
   margin: 6px;
 }
@@ -85,24 +87,33 @@ body, html {
 }
 
 .video-card {
+  position: relative;
   background: linear-gradient(145deg, #F2F3F6, #E5E6EC); /* Diagonal gradient */
   border-radius: 15px;
   box-shadow: 5px 5px 10px #bebebe, /* Soft outer shadow */
               -5px -5px 10px #ffffff;
-  padding: 20px;
-  text-align: center;
+  text-align: left;
+}
+
+.video-card-info {
+  padding: 0px 20px 20px 20px;
 }
 
 .video-title {
-  margin: 10px 0;
+  margin: 10px 0;;
   font-weight: bold;
+  color: #575F6B;
+}
+
+.video-creator {
+  color: #717c8c;
 }
 
 .video-thumbnail {
   width: 100%; /* Make the thumbnail span the full width of the card */
   border-top-left-radius: 15px; /* Rounded top corners */
   border-top-right-radius: 15px; /* Match the card's border-radius */
-  height: 194px; /* Fixed height, adjust as needed */
+  height: 216px; /* Fixed height, adjust as needed */
   object-fit: cover; /* This will crop the image to fit the container */
 }
 
@@ -110,6 +121,23 @@ body, html {
   text-decoration: none; /* Removes underline from links */
   color: inherit; /* Inherits the color from parent elements */
 }
+
+.youtube-icon-container {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px; /* Keeps it circular */
+  background: linear-gradient(145deg, #E5E6EC, #F2F3F6);
+  box-shadow: inset 5px 5px 4px #bebebe, 
+              inset -5px -5px 4px #F2F3F6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
