@@ -1,30 +1,35 @@
 import logo from './logo.svg';
 import './App.css';
-import React, { Component } from 'react'
+import React, { useState } from 'react';
+import SearchBar from './SearchBar';
+import VideoDisplay from './VideoDisplay';
 
-import { Button } from '@tsamantanis/react-glassmorphism'
-import '@tsamantanis/react-glassmorphism/dist/index.css'
+import axios from 'axios';
 
-function App() {
+const searchVideos = async (query) => {
+  try {
+    const response = await axios.get('http://localhost:8000/search/', { params: { query } });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching search results:', error);
+    return [];
+  }
+};
+
+const App = () => {
+  const [videos, setVideos] = useState([]);
+
+  const handleSearch = async (query) => {
+    const results = await searchVideos(query);
+    setVideos(results);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <Button text="Click me" />
-      </header>
+    <div>
+      <SearchBar onSearch={handleSearch} />
+      <VideoDisplay videos={videos} />
     </div>
   );
-}
+};
 
 export default App;
