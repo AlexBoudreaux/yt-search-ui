@@ -25,7 +25,7 @@ body, html {
   width: 40vw; /* Fixed width of 300px */
   display: flex;
   background: linear-gradient(145deg, #F2F3F6, #E5E6EC); /* Diagonal gradient */
-  border-radius: 30px;
+  border-radius: 40px;
   box-shadow: 5px 5px 10px #bebebe, /* Soft outer shadow */
               -5px -5px 10px #ffffff;  /* Soft inner shadow */
   margin: 0 auto; /* Centers the search bar in the container */
@@ -34,7 +34,7 @@ body, html {
 
 .search-input {
   flex: 1;
-  padding: 15px 20px;
+  padding: 15px 27px;
   font-size: 18px; /* Larger font size for emphasis */
   border: none;
   border-radius: 30px; /* Rounded corners */

@@ -9,7 +9,7 @@ const SearchBar = ({ onSearch }) => {
     };
   
     return (
-      <div className="search-bar-container">
+        <div className="search-bar-container">
         <form onSubmit={handleSubmit} className="search-bar">
           <input
             type="text"
@@ -17,11 +17,12 @@ const SearchBar = ({ onSearch }) => {
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search for videos"
             className="search-input"
+            autoFocus  // Automatically focus this input when the component mounts
           />
           <button type="submit" className="search-button">Search</button>
         </form>
       </div>
     );
   };
-  
+
 export default SearchBar;
