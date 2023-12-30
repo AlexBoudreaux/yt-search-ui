@@ -8,7 +8,11 @@ import axios from 'axios';
 
 const searchVideos = async (query) => {
   try {
-    const response = await axios.get('http://localhost:8000/search/', { params: { query } });
+    const params = {
+      query: query,
+      threshold: 0.77  // Adding the threshold parameter
+    };
+    const response = await axios.get('http://localhost:8000/search/', { params });
     return response.data;
   } catch (error) {
     console.error('Error fetching search results:', error);
@@ -25,7 +29,10 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className="App">
+      {/* <header className='header'>
+        Cooking Videos
+      </header> */}
       <SearchBar onSearch={handleSearch} />
       <VideoDisplay videos={videos} />
     </div>

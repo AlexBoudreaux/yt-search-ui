@@ -1,38 +1,126 @@
-.App {
-  text-align: center;
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100%; /* Ensure the gradient covers the full height */
+  background: linear-gradient(to bottom right, #F8F8FC, #E1E2E8); /* Diagonal gradient */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#root, .App {
+  min-height: 100vh; /* Ensure the App fills the viewport height */
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.search-bar-container {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  height: 120px; /* Increased height for a prominent look */
+  width: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+.search-bar {
+  width: 40vw; /* Fixed width of 300px */
+  display: flex;
+  background: linear-gradient(145deg, #F2F3F6, #E5E6EC); /* Diagonal gradient */
+  border-radius: 30px;
+  box-shadow: 5px 5px 10px #bebebe, /* Soft outer shadow */
+              -5px -5px 10px #ffffff;  /* Soft inner shadow */
+  margin: 0 auto; /* Centers the search bar in the container */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+
+.search-input {
+  flex: 1;
+  padding: 15px 20px;
+  font-size: 18px; /* Larger font size for emphasis */
+  border: none;
+  border-radius: 30px; /* Rounded corners */
+  background: inherit; /* Inherits the neumorphic design */
+  color: #333; /* Darker text for better readability */
+}
+
+.search-input:focus {
+  outline: none; /* Removes the default focus outline */
+}
+
+.search-button {
+  padding: 15px 25px;
+  font-size: 18px;
+  border: none;
+  border-radius: 30px; /* Rounded corners */
+  background: linear-gradient(145deg, #E5E6EC , #F2F3F6); /* Match the body background */
+  box-shadow: inset 1px 1px 15px #bebebe, /* Inset shadow for a pressed effect */
+             inset -8px -8px 15px #ffffff;
+  color: #333; /* Darker text for better readability */
+  cursor: pointer;
+  margin: 6px;
+}
+
+.search-button:hover {
+  background-color: #d1d1d1; /* Slightly darker background on hover */
+}
+
+.header {
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
+  background-color: #e0e0e0; /* Same background as the body for a seamless look */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  font-size: 24px; /* Larger font size for the title */
+  color: #333; /* Dark color for contrast */
+  font-weight: bold; /* Makes the title more prominent */
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three columns */
+  gap: 20px; /* Space between cards */
+  padding: 20px;
+  width: 100%;
+  max-width: 1200px; /* Maximum width of the grid */
+  /* margin: auto; Center the grid */
+}
+
+.video-card {
+  background: linear-gradient(145deg, #F2F3F6, #E5E6EC); /* Diagonal gradient */
+  border-radius: 15px;
+  box-shadow: 5px 5px 10px #bebebe, /* Soft outer shadow */
+              -5px -5px 10px #ffffff;
+  padding: 20px;
+  text-align: center;
+}
+
+.video-title {
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.video-thumbnail {
+  width: 100%; /* Make the thumbnail span the full width of the card */
+  border-top-left-radius: 15px; /* Rounded top corners */
+  border-top-right-radius: 15px; /* Match the card's border-radius */
+  height: 194px; /* Fixed height, adjust as needed */
+  object-fit: cover; /* This will crop the image to fit the container */
+}
+
+.video-card-link {
+  text-decoration: none; /* Removes underline from links */
+  color: inherit; /* Inherits the color from parent elements */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .video-grid {
+    grid-template-columns: repeat(2, 1fr); /* Two columns for smaller screens */
   }
 }
+
+@media (max-width: 480px) {
+  .video-grid {
+    grid-template-columns: 1fr; /* One column for very small screens */
+  }
+}
+
