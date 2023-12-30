@@ -1,5 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { Component } from 'react'
+
+import { Button } from '@tsamantanis/react-glassmorphism'
+import '@tsamantanis/react-glassmorphism/dist/index.css'
 
 function App() {
   return (
@@ -17,6 +21,7 @@ function App() {
         >
           Learn React
         </a>
+        <Button text="Click me" />
       </header>
     </div>
   );
