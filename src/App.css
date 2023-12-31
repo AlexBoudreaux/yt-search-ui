@@ -229,3 +229,57 @@ body, html {
   }
 }
 
+
+@media (max-width: 768px) {
+  .app-header {
+    width: 95vw; /* Slightly reduce the width for mobile screens */
+    flex-direction: row;
+    justify-content: space-between; /* Ensure items are spaced out evenly */
+    padding: 15px;
+  }
+
+  .youtube-icon-header,
+  .user-icon-header {
+    width: 50px; /* Reduce the size for mobile */
+    height: 50px;
+  }
+
+  .search-bar-container {
+    height: auto; /* Adjust height to fit content */
+    padding: 15px 0; /* Add some padding top and bottom */
+  }
+
+  .search-bar {
+    width: 85vw; /* Adjust width to fit mobile screens */
+    padding-left: 15px; /* Adjust padding to fit smaller size */
+  }
+
+  .search-input {
+    padding: 10px 15px; /* Adjust padding for mobile */
+  }
+
+  .threshold-buttons {
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center; /* Center buttons vertically */
+  }
+
+  .threshold-button {
+    width: 80vw; /* Full width buttons on mobile */
+    margin: 10px 0; /* Add margin between buttons */
+  }
+
+  .video-grid {
+    grid-template-columns: 1fr; /* One column grid layout */
+    padding: 15px; /* Adjust padding for mobile */
+    gap: 15px; /* Reduce gap between cards */
+  }
+
+  .video-card {
+    height: auto; /* Adjust height to fit content */
+  }
+
+  .video-card-info,
+  .youtube-icon-container {
+    padding: 10px; /* Adjust padding for mobile */
+  }
+}
