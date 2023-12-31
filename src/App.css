@@ -261,7 +261,7 @@ body, html {
   }
 
   .search-button {
-    width: 10vw; /* Set width to 90% of the viewport width */
+    width: 25vw; /* Set width to 90% of the viewport width */
   }
 
   .threshold-buttons {
