@@ -7,12 +7,44 @@ body, html {
   background-attachment: fixed; /* Add this line to fix the background */
 }
 
-
 #root, .App {
   min-height: 100vh; /* Ensure the App fills the viewport height */
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.app-header {
+  width: 90vw;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding: 15px;
+  font-size: 24px;
+  text-align: center;
+  color: #757575;
+}
+
+.youtube-icon-header {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #F2F3F6, #E5E6EC);
+  box-shadow: inset 3px 3px 3px #d1d1d1,
+              inset -3px -3px 3px #ffffff;
+  margin-right: 20px; /* Space between icon and text */
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #757575; /* Divider color */
+  margin-bottom: 15px;
+  margin-top: 5px;
+  box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.35);
 }
 
 .search-bar-container {
@@ -21,27 +53,33 @@ body, html {
   align-items: center;
   height: 120px; /* Increased height for a prominent look */
   width: 100%;
+  position: relative;
 }
 
 .search-bar {
-  width: 40vw; /* Fixed width of 300px */
+  width: 40vw;
   display: flex;
-  background: linear-gradient(145deg, #F2F3F6, #E5E6EC); /* Diagonal gradient */
+  align-items: center; /* Align children vertically in the center */
+  justify-content: flex-start; /* Start children from the beginning */
+  background: linear-gradient(145deg, #F2F3F6, #E5E6EC);
   border-radius: 40px;
-  box-shadow: 5px 5px 10px #bebebe, /* Soft outer shadow */
-              -5px -5px 10px #ffffff;  /* Soft inner shadow */
-  margin: 0 auto; /* Centers the search bar in the container */
+  box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
+  margin: 0 auto;
+  padding-left: 25px; /* Add padding to the left for the icon */
 }
 
+.search-icon {
+  color: #757575;
+}
 
 .search-input {
   flex: 1;
-  padding: 15px 27px;
+  padding: 15px 20px;
   font-size: 18px; /* Larger font size for emphasis */
   border: none;
   border-radius: 30px; /* Rounded corners */
   background: inherit; /* Inherits the neumorphic design */
-  color: #575F6B; /* Darker text for better readability */
+  color: #757575; /* Darker text for better readability */
 }
 
 .search-input:focus {
@@ -54,32 +92,44 @@ body, html {
   border: none;
   border-radius: 30px; /* Rounded corners */
   background: linear-gradient(145deg, #E5E6EC , #F2F3F6); /* Match the body background */
-  box-shadow: inset 1px 1px 15px #bebebe, /* Inset shadow for a pressed effect */
-             inset -8px -8px 15px #ffffff;
-  color: #575F6B; /* Darker text for better readability */
+  box-shadow: inset 3px 3px 3px #d1d1d1,
+              inset -3px -3px 3px #ffffff;
+  color: #757575; /* Darker text for better readability */
   cursor: pointer;
-  margin: 6px;
+  margin:1px;
 }
 
 .search-button:hover {
-  background-color: #d1d1d1; /* Slightly darker background on hover */
+  background-color: #000000; /* Slightly darker background on hover */
 }
 
-.header {
-  width: 100%;
-  text-align: center;
-  padding: 20px 0;
-  background-color: #e0e0e0; /* Same background as the body for a seamless look */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  font-size: 24px; /* Larger font size for the title */
-  color: #333; /* Dark color for contrast */
-  font-weight: bold; /* Makes the title more prominent */
+.threshold-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.threshold-button {
+  background: linear-gradient(145deg, #F2F3F6, #E5E6EC);
+  border: none;
+  border-radius: 20px;
+  box-shadow: 5px 5px 7px #bebebe, -5px -5px 7px #ffffff;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  color: #757575;
+}
+
+.threshold-button.selected {
+  background: linear-gradient(145deg, #E5E6EC, #F2F3F6);
+  box-shadow: inset 3px 3px 3px #d1d1d1,
+              inset -3px -3px 3px #ffffff;
 }
 
 .video-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Three columns */
-  gap: 20px; /* Space between cards */
+  gap: 25px; /* Space between cards */
   padding: 20px;
   width: 100%;
   max-width: 1200px; /* Maximum width of the grid */
@@ -91,8 +141,11 @@ body, html {
   background: linear-gradient(145deg, #F2F3F6, #E5E6EC); /* Diagonal gradient */
   border-radius: 15px;
   box-shadow: 5px 5px 10px #bebebe, /* Soft outer shadow */
-              -5px -5px 10px #ffffff;
+              -3px -3px 5px #ffffff;
   text-align: left;
+  display: flex;
+  flex-direction: column;
+  height: 320px;
 }
 
 .video-card-info {
@@ -100,9 +153,14 @@ body, html {
 }
 
 .video-title {
-  margin: 10px 0;;
+  margin: 10px 0;
   font-weight: bold;
-  color: #575F6B;
+  color: #757575;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limit to two lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .video-creator {
@@ -113,7 +171,7 @@ body, html {
   width: 100%; /* Make the thumbnail span the full width of the card */
   border-top-left-radius: 15px; /* Rounded top corners */
   border-top-right-radius: 15px; /* Match the card's border-radius */
-  height: 216px; /* Fixed height, adjust as needed */
+  height: 214px; /* Fixed height, adjust as needed */
   object-fit: cover; /* This will crop the image to fit the container */
 }
 
@@ -125,10 +183,11 @@ body, html {
 .youtube-icon-container {
   width: 40px;
   height: 40px;
+  color: #757575;
   border-radius: 20px; /* Keeps it circular */
   background: linear-gradient(145deg, #E5E6EC, #F2F3F6);
-  box-shadow: inset 5px 5px 4px #bebebe, 
-              inset -5px -5px 4px #F2F3F6;
+  box-shadow: inset 3px 3px 3px #d1d1d1,
+              inset -3px -3px 3px #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
