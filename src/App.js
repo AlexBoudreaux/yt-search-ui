@@ -4,6 +4,7 @@ import SearchBar from './SearchBar';
 import VideoDisplay from './VideoDisplay';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 import LoadingSpinner from './LoadingSpinner';
 import axios from 'axios';
 
@@ -51,6 +52,9 @@ const App = () => {
           <FontAwesomeIcon icon={faYoutube} />
         </div>
         YT Recipe Search
+        <div className="user-icon-header">
+          <FontAwesomeIcon icon={faUser} />
+        </div>  
       </header>
       <div className="divider"></div>
       <SearchBar onSearch={(query) => {

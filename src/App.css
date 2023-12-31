@@ -17,6 +17,7 @@ body, html {
 .app-header {
   width: 90vw;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   justify-content: left;
   padding: 15px;
@@ -37,6 +38,19 @@ body, html {
               inset -3px -3px 3px #ffffff;
   margin-right: 20px; /* Space between icon and text */
 }
+
+.user-icon-header {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 20px;
+  background: linear-gradient(-145deg, #F2F3F6, #E5E6EC);
+  box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
+  margin-left: auto; /* This will push the icon to the right side of the header */
+}
+
 
 .divider {
   width: 100%;
@@ -61,9 +75,9 @@ body, html {
   display: flex;
   align-items: center; /* Align children vertically in the center */
   justify-content: flex-start; /* Start children from the beginning */
-  background: linear-gradient(145deg, #F2F3F6, #E5E6EC);
+  background: linear-gradient(170deg, #F2F3F6, #E5E6EC);
   border-radius: 40px;
-  box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
+  box-shadow: 5px 5px 7px #bebebe, -5px -5px 7px #ffffff;
   margin: 0 auto;
   padding-left: 25px; /* Add padding to the left for the icon */
 }
@@ -96,11 +110,14 @@ body, html {
               inset -3px -3px 3px #ffffff;
   color: #757575; /* Darker text for better readability */
   cursor: pointer;
-  margin:1px;
+  margin: 6px;
+  transition: box-shadow 0.3s ease, color 0.3s ease;
 }
 
 .search-button:hover {
-  background-color: #000000; /* Slightly darker background on hover */
+  box-shadow: inset 6px 6px 6px #d1d1d1,
+              inset -6px -6px 6px #ffffff; /* Slightly darker background on hover */
+  color: #585858
 }
 
 .threshold-buttons {
@@ -110,7 +127,7 @@ body, html {
 }
 
 .threshold-button {
-  background: linear-gradient(145deg, #F2F3F6, #E5E6EC);
+  background: linear-gradient(-145deg, #F2F3F6, #F2F3F6, #E5E6EC);
   border: none;
   border-radius: 20px;
   box-shadow: 5px 5px 7px #bebebe, -5px -5px 7px #ffffff;
@@ -118,13 +135,14 @@ body, html {
   margin: 0 10px;
   cursor: pointer;
   color: #757575;
+  transition: box-shadow 0.3s ease, background 0.3s ease; /* Add transition for background */
 }
 
 .threshold-button.selected {
   background: linear-gradient(145deg, #E5E6EC, #F2F3F6);
-  box-shadow: inset 3px 3px 3px #d1d1d1,
-              inset -3px -3px 3px #ffffff;
+  box-shadow: inset 3px 3px 3px #d1d1d1, inset -3px -3px 3px #ffffff;
 }
+
 
 .video-grid {
   display: grid;
