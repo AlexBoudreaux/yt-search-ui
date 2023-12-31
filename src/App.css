@@ -245,17 +245,23 @@ body, html {
   }
 
   .search-bar-container {
-    height: auto; /* Adjust height to fit content */
-    padding: 15px 0; /* Add some padding top and bottom */
+    flex-direction: column; /* Stack input and button */
+    align-items: center; /* Center-align the children */
+    width: 90vw; /* Set width to 90% of the viewport width */
+    margin-top: 15px; /* Add some space above the search bar */
   }
 
   .search-bar {
-    width: 85vw; /* Adjust width to fit mobile screens */
-    padding-left: 15px; /* Adjust padding to fit smaller size */
+    width: 90vw; /* Set width to 90% of the viewport width */
+    margin-bottom: 15px; /* Add some space between the search bar and button */
   }
 
   .search-input {
-    padding: 10px 15px; /* Adjust padding for mobile */
+    width: 100%; /* Make the input take full width of its container */
+  }
+
+  .search-button {
+    width: 90vw; /* Set width to 90% of the viewport width */
   }
 
   .threshold-buttons {
