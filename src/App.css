@@ -248,12 +248,12 @@ body, html {
     flex-direction: column; /* Stack input and button */
     align-items: center; /* Center-align the children */
     width: 90vw; /* Set width to 90% of the viewport width */
-    margin-top: 15px; /* Add some space above the search bar */
+    margin-top: 10px; /* Add some space above the search bar */
   }
 
   .search-bar {
     width: 90vw; /* Set width to 90% of the viewport width */
-    margin-bottom: 15px; /* Add some space between the search bar and button */
+    margin-bottom: 0px; /* Add some space between the search bar and button */
   }
 
   .search-input {
@@ -261,7 +261,7 @@ body, html {
   }
 
   .search-button {
-    width: 90vw; /* Set width to 90% of the viewport width */
+    width: 10vw; /* Set width to 90% of the viewport width */
   }
 
   .threshold-buttons {
@@ -271,7 +271,7 @@ body, html {
 
   .threshold-button {
     width: 80vw; /* Full width buttons on mobile */
-    margin: 10px 0; /* Add margin between buttons */
+    margin: 8px 0; /* Add margin between buttons */
   }
 
   .video-grid {
