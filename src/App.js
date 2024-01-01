@@ -12,9 +12,9 @@ const searchVideos = async (query, threshold) => {
   try {
     const params = {
       query: query,
-      threshold: threshold  // Adding the threshold parameter
+      threshold: threshold
     };
-    const response = await axios.get('http://localhost:8000/search/', { params });
+    const response = await axios.get('https://yt-search-api-d6kibk2c6q-ue.a.run.app/search', { params });
     return response.data;
   } catch (error) {
     console.error('Error fetching search results:', error);
