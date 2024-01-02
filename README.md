@@ -35,7 +35,7 @@ YT Search UI is a sleek, modern React-based web application designed for easy an
 
 2. **Change API URL**:
    ```
-   
+   line 12: const apiUrl = <url>
    ```
 
 3. **Install Dependencies**:
