@@ -38,6 +38,7 @@ const App = () => {
   const [videos, setVideos] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedThreshold, setSelectedThreshold] = useState('medium');
+  const [searchMade, setSearchMade] = useState(false);
 
   // Call checkServerHealth on component mount
   useEffect(() => {
@@ -46,10 +47,11 @@ const App = () => {
 
   const handleSearch = async (query) => {
     setIsLoading(true);
+    setSearchMade(true); // Set searchMade to true when a search is performed
     const results = await searchVideos(query, thresholdValues[selectedThreshold]);
     setVideos(results);
     setIsLoading(false);
-  };  
+  };
 
   const handleThresholdChange = (threshold) => {
     setSelectedThreshold(threshold);
@@ -100,7 +102,7 @@ const App = () => {
       </div>
       {isLoading ? (
         <LoadingSpinner />
-      ) : videos.length === 0 ? (
+      ) : searchMade && videos.length === 0 ? (
         <div className="no-videos-message">
           No Videos Match
         </div>
