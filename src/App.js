@@ -8,13 +8,25 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import LoadingSpinner from './LoadingSpinner';
 import axios from 'axios';
 
+// API URL 
+const apiUrl = "https://yt-search-api-d6kibk2c6q-ue.a.run.app/";
+
+const checkServerHealth = async () => {
+  try {
+    const response = await axios.get(apiUrl);
+    console.log('Server health check:', response.statusText);
+  } catch (error) {
+    console.error('Error during server health check:', error);
+  }
+};
+
 const searchVideos = async (query, threshold) => {
   try {
     const params = {
       query: query,
       threshold: threshold
     };
-    const response = await axios.get('https://yt-search-api-d6kibk2c6q-ue.a.run.app/search', { params });
+    const response = await axios.get(apiUrl + 'search', { params });
     return response.data;
   } catch (error) {
     console.error('Error fetching search results:', error);
@@ -27,16 +39,6 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedThreshold, setSelectedThreshold] = useState('medium');
   const [currentQuery, setCurrentQuery] = useState('');
-
-  // Function to check server health
-  const checkServerHealth = async () => {
-    try {
-      const response = await axios.get('https://yt-search-api-d6kibk2c6q-ue.a.run.app/');
-      console.log('Server health check:', response.statusText);
-    } catch (error) {
-      console.error('Error during server health check:', error);
-    }
-  };
 
   // Call checkServerHealth on component mount
   useEffect(() => {

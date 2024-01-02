@@ -33,12 +33,17 @@ YT Search UI is a sleek, modern React-based web application designed for easy an
    cd yt-search-ui
    ```
 
-2. **Install Dependencies**:
+2. **Change API URL**:
+   ```
+   
+   ```
+
+3. **Install Dependencies**:
    ```
    npm install
    ```
 
-3. **Run the App**:
+4. **Run the App**:
    ```
    npm start
    ```
