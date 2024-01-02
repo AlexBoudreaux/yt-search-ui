@@ -33,7 +33,7 @@ YT Search UI is a sleek, modern React-based web application designed for easy an
    cd yt-search-ui
    ```
 
-2. **Change API URL**:
+2. **Change API URL in src/App.js**:
    ```
    line 12: const apiUrl = <url>
    ```
