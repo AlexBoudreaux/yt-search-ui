@@ -99,6 +99,9 @@ const App = () => {
         </button>
       </div>
       {isLoading ? <LoadingSpinner /> : <VideoDisplay videos={videos} />}
+      <footer className="footer">
+      alexboudreaux.dev &copy; {new Date().getFullYear()} 
+      </footer>
     </div>
   );
 };
