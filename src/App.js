@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchBar from './SearchBar';
 import VideoDisplay from './VideoDisplay';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -27,6 +27,21 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedThreshold, setSelectedThreshold] = useState('medium');
   const [currentQuery, setCurrentQuery] = useState('');
+
+  // Function to check server health
+  const checkServerHealth = async () => {
+    try {
+      const response = await axios.get('https://yt-search-api-d6kibk2c6q-ue.a.run.app/');
+      console.log('Server health check:', response.statusText);
+    } catch (error) {
+      console.error('Error during server health check:', error);
+    }
+  };
+
+  // Call checkServerHealth on component mount
+  useEffect(() => {
+    checkServerHealth();
+  }, []);
 
   const handleSearch = async (query) => {
     setIsLoading(true);

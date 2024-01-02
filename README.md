@@ -1,70 +1,94 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# YT Search UI
 
-## Available Scripts
+## Overview
+YT Search UI is a sleek, modern React-based web application designed for easy and efficient searching of YouTube videos. This application showcases the power of React in creating responsive and user-friendly interfaces. Deployed with Vercel, the app offers seamless Continuous Deployment (CD) directly from the Git repository, ensuring that the latest features and updates are always live.
 
-In the project directory, you can run:
+## Features
+- **React Frontend**: Crafted with the latest React features for a dynamic user experience.
+- **Vercel Deployment**: The application is deployed on Vercel for high availability and optimal performance.
+- **Continuous Deployment**: Integrated with a Git repository for continuous deployment. Any commits pushed to the repository are automatically deployed to the development environment, making updates hassle-free.
+- **Supabase Database**: Utilizes Supabase for robust and scalable database management.
+- **Cloud Run API**: Backend API hosted on Google Cloud Run, providing a reliable and scalable serverless solution for handling requests.
 
-### `npm start`
+## Links
+- **Vercel Dashboard**: [Vercel Dashboard](https://vercel.com/alex-boudreaux-s-projects/yt-search-ui)
+- **Live Application**: [YT Search UI](https://yt-search-ui.vercel.app/)
+- **Database Dashboard**: [Supabase Dashboard](https://supabase.com/dashboard/project/bbrcyfqrvwqbboudayre)
+- **API on Cloud Run**: [Cloud Run Dashboard](https://console.cloud.google.com/run?authuser=1&project=yt-search-409720)
+- **API URL**: [YT Search API](https://yt-search-api-d6kibk2c6q-ue.a.run.app)
+- **API Repository**: [GitHub Repo](https://github.com/AlexBoudreaux/yt-search-api)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Running the Application Locally
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Prerequisites
+- Node.js and npm
+- Python 3 and pip
 
-### `npm test`
+### Setting Up the React App
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Clone the Repository**:
+   ```
+   git clone https://github.com/AlexBoudreaux/yt-search-ui.git
+   cd yt-search-ui
+   ```
 
-### `npm run build`
+2. **Install Dependencies**:
+   ```
+   npm install
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. **Run the App**:
+   ```
+   npm start
+   ```
+   The app will be available at `http://localhost:3000`.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Setting Up the API Locally
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Clone the API Repository**:
+   ```
+   git clone https://github.com/AlexBoudreaux/yt-search-api.git
+   cd yt-search-api
+   ```
 
-### `npm run eject`
+2. **Install Python Dependencies**:
+   ```
+   pip install -r requirements.txt
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. **Run the API**:
+   ```
+   export FLASK_APP=main.py   
+   flask run
+   ```
+   The API will be available at `http://localhost:8000`.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Continuous Deployment with Vercel
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The YT Search UI app benefits from Vercel's continuous deployment feature. To deploy updates:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. **Make Changes**: Update the code in your local development environment.
+2. **Commit and Push**:
+   ```
+   git add .
+   git commit -m "Your update message"
+   git push origin main
+   ```
+3. **Automatic Deployment**: Vercel automatically deploys the new changes to the development environment, making the updates live.
 
-## Learn More
+## Contributing
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-### Code Splitting
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Distributed under the MIT License. See `LICENSE` for more information.
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
