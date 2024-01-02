@@ -38,7 +38,6 @@ const App = () => {
   const [videos, setVideos] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedThreshold, setSelectedThreshold] = useState('medium');
-  const [currentQuery, setCurrentQuery] = useState('');
 
   // Call checkServerHealth on component mount
   useEffect(() => {
@@ -69,13 +68,14 @@ const App = () => {
           <FontAwesomeIcon icon={faYoutube} />
         </div>
         YT Recipe Search
-        <div className="user-icon-header">
-          <FontAwesomeIcon icon={faUser} />
+        <div className="user-icon-container">
+          <a href="https://github.com/AlexBoudreaux" className="user-icon-link" target="_blank" rel="noopener noreferrer">
+            <FontAwesomeIcon icon={faUser} />
+          </a>
         </div>  
       </header>
       <div className="divider"></div>
       <SearchBar onSearch={(query) => {
-        setCurrentQuery(query); // Update the current query state
         handleSearch(query); // Perform search with the new query
       }} />
       <div className="threshold-buttons">
@@ -98,9 +98,17 @@ const App = () => {
           High Sensitivity
         </button>
       </div>
-      {isLoading ? <LoadingSpinner /> : <VideoDisplay videos={videos} />}
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : videos.length === 0 ? (
+        <div className="no-videos-message">
+          No Videos Match
+        </div>
+      ) : (
+        <VideoDisplay videos={videos} />
+      )}
       <footer className="footer">
-      alexboudreaux.dev &copy; {new Date().getFullYear()} 
+        alexboudreaux.dev &copy; {new Date().getFullYear()} 
       </footer>
     </div>
   );
