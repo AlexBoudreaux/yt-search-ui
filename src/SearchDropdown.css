@@ -1,0 +1,36 @@
+.search-dropdown {
+  display: none;
+  background: linear-gradient(145deg, #F2F3F6, #E5E6EC);
+  border-radius: 20px;
+  box-shadow: 5px 5px 15px #bebebe, -5px -5px 15px #ffffff;
+  padding: 10px;
+  margin-top: 10px; /* Adjust as needed */
+  position: absolute;
+  width: 100%; /* Adjust based on your search bar's width */
+  z-index: 10; /* Ensure it's above other content */
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(-10px);
+}
+
+.search-dropdown.visible {
+  display: block;
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.search-dropdown ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.search-dropdown li {
+  padding: 5px 10px;
+  margin: 5px 0;
+  cursor: pointer;
+}
+
+.search-dropdown li:hover {
+  background: linear-gradient(-145deg, #F2F3F6, #E5E6EC);
+}

@@ -2,6 +2,7 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import SearchBar from './SearchBar';
 import VideoDisplay from './VideoDisplay';
+import SearchDropdown from './SearchDropdown'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
@@ -39,6 +40,8 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedThreshold, setSelectedThreshold] = useState('medium');
   const [searchMade, setSearchMade] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [searchInput, setSearchInput] = useState('');
 
   // Call checkServerHealth on component mount
   useEffect(() => {
@@ -51,6 +54,11 @@ const App = () => {
     const results = await searchVideos(query, thresholdValues[selectedThreshold]);
     setVideos(results);
     setIsLoading(false);
+  };
+
+  const handleInputChange = (query) => {
+    setSearchInput(query); // Update search input state
+    setShowDropdown(query.length > 0); // Show or hide dropdown based on input
   };
 
   const handleThresholdChange = (threshold) => {
@@ -77,9 +85,11 @@ const App = () => {
         </div>  
       </header>
       <div className="divider"></div>
-      <SearchBar onSearch={(query) => {
-        handleSearch(query); // Perform search with the new query
-      }} />
+      <SearchBar 
+        onSearch={handleSearch} 
+        onInputChange={handleInputChange} // Make sure this is correctly passed
+      />
+      {/* <SearchDropdown isVisible={showDropdown} /> */}
       <div className="threshold-buttons">
         <button 
           className={`threshold-button ${selectedThreshold === 'low' ? 'selected' : ''}`}

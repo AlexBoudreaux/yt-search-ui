@@ -2,12 +2,18 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = ({ onSearch, onInputChange, onHideDropdown }) => {
     const [query, setQuery] = useState('');
-  
+    
     const handleSubmit = (e) => {
       e.preventDefault();
       onSearch(query);
+      onInputChange(''); // Hide the dropdown on submit
+    };
+
+    const handleInputChange = (e) => {
+      setQuery(e.target.value);
+      onInputChange(e.target.value); // Call the new prop function
     };
   
     return (
@@ -17,15 +23,15 @@ const SearchBar = ({ onSearch }) => {
           <input
             type="text"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={handleInputChange}
             placeholder="Search for recipes..."
             className="search-input"
-            autoFocus  // Automatically focus this input when the component mounts
+            autoFocus
           />
           <button type="submit" className="search-button">Search</button>
         </form>
       </div>
     );
-  };
+};
 
 export default SearchBar;
