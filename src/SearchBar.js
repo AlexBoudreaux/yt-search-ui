@@ -4,18 +4,18 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-const SearchBar = ({ onSearch, onInputChange, onHideDropdown }) => {
+const SearchBar = ({ onSearch, onInputChange }) => {
     const [query, setQuery] = useState('');
     
     const handleSubmit = (e) => {
       e.preventDefault();
       onSearch(query);
-      onInputChange(''); // Hide the dropdown on submit
     };
 
     const handleInputChange = (e) => {
-      setQuery(e.target.value);
-      onInputChange(e.target.value); // Call the new prop function
+      const newQuery = e.target.value;
+      setQuery(newQuery);
+      onInputChange(newQuery);
     };
   
     return (
