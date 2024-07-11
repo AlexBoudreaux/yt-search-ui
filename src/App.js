@@ -1,16 +1,13 @@
+// src/App.js
+
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import SearchBar from './SearchBar';
 import VideoDisplay from './VideoDisplay';
-import SearchDropdown from './SearchDropdown'; 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faYoutube } from '@fortawesome/free-brands-svg-icons';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
 import LoadingSpinner from './LoadingSpinner';
 import axios from 'axios';
 
-// API URL 
-const apiUrl = "https://yt-search-api-d6kibk2c6q-ue.a.run.app/";
+const apiUrl = "https://yt-search-api-rust.vercel.app/";
 
 const checkServerHealth = async () => {
   try {
@@ -21,13 +18,10 @@ const checkServerHealth = async () => {
   }
 };
 
-const searchVideos = async (query, threshold) => {
+const searchVideos = async (query, top_k = 30, namespace = "All") => {
   try {
-    const params = {
-      query: query,
-      threshold: threshold
-    };
-    const response = await axios.get(apiUrl + 'search', { params });
+    const params = { query, top_k, namespace };
+    const response = await axios.get(`${apiUrl}search`, { params });
     return response.data;
   } catch (error) {
     console.error('Error fetching search results:', error);
@@ -38,37 +32,23 @@ const searchVideos = async (query, threshold) => {
 const App = () => {
   const [videos, setVideos] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedThreshold, setSelectedThreshold] = useState('medium');
   const [searchMade, setSearchMade] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false);
-  const [searchInput, setSearchInput] = useState('');
+  const [selectedVideo, setSelectedVideo] = useState(null);
 
-  // Call checkServerHealth on component mount
   useEffect(() => {
     checkServerHealth();
   }, []);
 
   const handleSearch = async (query) => {
     setIsLoading(true);
-    setSearchMade(true); // Set searchMade to true when a search is performed
-    const results = await searchVideos(query, thresholdValues[selectedThreshold]);
+    setSearchMade(true);
+    const results = await searchVideos(query);
     setVideos(results);
     setIsLoading(false);
   };
 
-  const handleInputChange = (query) => {
-    setSearchInput(query); // Update search input state
-    setShowDropdown(query.length > 0); // Show or hide dropdown based on input
-  };
-
-  const handleThresholdChange = (threshold) => {
-    setSelectedThreshold(threshold);
-  };  
-
-  const thresholdValues = {
-    low: 0.75,   // Adjust these values as needed
-    medium: 0.77,
-    high: 0.80
+  const handleVideoSelect = (video) => {
+    setSelectedVideo(video);
   };
 
   return (
@@ -85,39 +65,13 @@ const App = () => {
         </div>  
       </header>
       <div className="divider"></div>
-      <SearchBar 
-        onSearch={handleSearch} 
-        onInputChange={handleInputChange} // Make sure this is correctly passed
-      />
-      {/* <SearchDropdown isVisible={showDropdown} /> */}
-      <div className="threshold-buttons">
-        <button 
-          className={`threshold-button ${selectedThreshold === 'low' ? 'selected' : ''}`}
-          onClick={() => handleThresholdChange('low')}
-        >
-          Low Sensitivity
-        </button>
-        <button 
-          className={`threshold-button ${selectedThreshold === 'medium' ? 'selected' : ''}`}
-          onClick={() => handleThresholdChange('medium')}
-        >
-          Medium Sensitivity
-        </button>
-        <button 
-          className={`threshold-button ${selectedThreshold === 'high' ? 'selected' : ''}`}
-          onClick={() => handleThresholdChange('high')}
-        >
-          High Sensitivity
-        </button>
-      </div>
+      <SearchBar onSearch={handleSearch} />
       {isLoading ? (
         <LoadingSpinner />
       ) : searchMade && videos.length === 0 ? (
-        <div className="no-videos-message">
-          No Videos Match
-        </div>
+        <div className="no-videos-message">No Videos Match</div>
       ) : (
-        <VideoDisplay videos={videos} />
+        <VideoDisplay videos={videos} onVideoSelect={handleVideoSelect} />
       )}
       <footer className="footer">
         alexboudreaux.dev &copy; {new Date().getFullYear()} 

@@ -1,3 +1,5 @@
+// src/SearchDropdown.js
+
 import React from 'react';
 import './SearchDropdown.css'; // Assuming you will create a separate CSS file for this component
 
