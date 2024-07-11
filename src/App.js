@@ -27,6 +27,7 @@ const searchVideos = async (query, top_k = 30, namespace = "All") => {
   try {
     const params = { query, top_k, namespace };
     const response = await axios.get(`${apiUrl}search`, { params });
+    console.log('API response:', response.data); // Log the response
     return response.data;
   } catch (error) {
     console.error('Error fetching search results:', error);

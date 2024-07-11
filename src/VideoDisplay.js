@@ -25,7 +25,13 @@ const VideoDisplay = ({ videos, onVideoSelect }) => {
               <FontAwesomeIcon icon={faUser} style={{ marginRight: '7px' }}/>
               {video.creator}
             </div>
-            <div className="video-category">{video.food_category.join(', ')}</div>
+            {video.food_category && (
+              <div className="video-category">
+                {Array.isArray(video.food_category) 
+                  ? video.food_category.join(', ') 
+                  : video.food_category}
+              </div>
+            )}
             <div className="youtube-icon-container">
               <FontAwesomeIcon icon={faYoutube} />
             </div>
