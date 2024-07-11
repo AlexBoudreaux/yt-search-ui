@@ -4,10 +4,15 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import SearchBar from './SearchBar';
 import VideoDisplay from './VideoDisplay';
+import SearchDropdown from './SearchDropdown'; 
+import RecipeDetails from './RecipeDetails';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 import LoadingSpinner from './LoadingSpinner';
 import axios from 'axios';
 
-const apiUrl = "https://yt-search-api-rust.vercel.app/";
+const apiUrl = "https://yt-search-api-d6kibk2c6q-ue.a.run.app/";
 
 const checkServerHealth = async () => {
   try {
@@ -32,7 +37,10 @@ const searchVideos = async (query, top_k = 30, namespace = "All") => {
 const App = () => {
   const [videos, setVideos] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedThreshold, setSelectedThreshold] = useState('medium');
   const [searchMade, setSearchMade] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [searchInput, setSearchInput] = useState('');
   const [selectedVideo, setSelectedVideo] = useState(null);
 
   useEffect(() => {
@@ -42,10 +50,20 @@ const App = () => {
   const handleSearch = async (query) => {
     setIsLoading(true);
     setSearchMade(true);
-    const results = await searchVideos(query);
+    setSelectedVideo(null);
+    const results = await searchVideos(query, 30, "All");
     setVideos(results);
     setIsLoading(false);
   };
+
+  const handleInputChange = (query) => {
+    setSearchInput(query);
+    setShowDropdown(query.length > 0);
+  };
+
+  const handleThresholdChange = (threshold) => {
+    setSelectedThreshold(threshold);
+  };  
 
   const handleVideoSelect = (video) => {
     setSelectedVideo(video);
@@ -65,13 +83,41 @@ const App = () => {
         </div>  
       </header>
       <div className="divider"></div>
-      <SearchBar onSearch={handleSearch} />
+      <SearchBar 
+        onSearch={handleSearch} 
+        onInputChange={handleInputChange}
+      />
+      <div className="threshold-buttons">
+        <button 
+          className={`threshold-button ${selectedThreshold === 'low' ? 'selected' : ''}`}
+          onClick={() => handleThresholdChange('low')}
+        >
+          Low Sensitivity
+        </button>
+        <button 
+          className={`threshold-button ${selectedThreshold === 'medium' ? 'selected' : ''}`}
+          onClick={() => handleThresholdChange('medium')}
+        >
+          Medium Sensitivity
+        </button>
+        <button 
+          className={`threshold-button ${selectedThreshold === 'high' ? 'selected' : ''}`}
+          onClick={() => handleThresholdChange('high')}
+        >
+          High Sensitivity
+        </button>
+      </div>
       {isLoading ? (
         <LoadingSpinner />
       ) : searchMade && videos.length === 0 ? (
-        <div className="no-videos-message">No Videos Match</div>
+        <div className="no-videos-message">
+          No Videos Match
+        </div>
       ) : (
-        <VideoDisplay videos={videos} onVideoSelect={handleVideoSelect} />
+        <>
+          <VideoDisplay videos={videos} onVideoSelect={handleVideoSelect} />
+          {selectedVideo && <RecipeDetails video={selectedVideo} />}
+        </>
       )}
       <footer className="footer">
         alexboudreaux.dev &copy; {new Date().getFullYear()} 
