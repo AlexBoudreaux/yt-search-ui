@@ -12,7 +12,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import LoadingSpinner from './LoadingSpinner';
 import axios from 'axios';
 
-const apiUrl = "https://yt-search-api-d6kibk2c6q-ue.a.run.app/";
+const apiUrl = "https://yt-search-api-rust.vercel.app/";
 
 const checkServerHealth = async () => {
   try {
