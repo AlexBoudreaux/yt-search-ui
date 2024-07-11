@@ -4,7 +4,6 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import SearchBar from './SearchBar';
 import VideoDisplay from './VideoDisplay';
-import SearchDropdown from './SearchDropdown'; 
 import RecipeDetails from './RecipeDetails';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
@@ -38,11 +37,15 @@ const searchVideos = async (query, top_k = 30, namespace = "All") => {
 const App = () => {
   const [videos, setVideos] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedThreshold, setSelectedThreshold] = useState('medium');
   const [searchMade, setSearchMade] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false);
   const [searchInput, setSearchInput] = useState('');
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState('All');
+
+  const categories = [
+    'All', 'Entree', 'Side Dish', 'Dessert', 'Beverage', 'Appetizer', 
+    'Snack', 'Soup', 'Salad', 'Breakfast', 'Condiment', 'Dip', 'Cocktail'
+  ];
 
   useEffect(() => {
     checkServerHealth();
@@ -52,22 +55,21 @@ const App = () => {
     setIsLoading(true);
     setSearchMade(true);
     setSelectedVideo(null);
-    const results = await searchVideos(query, 30, "All");
+    const results = await searchVideos(query, 30, selectedCategory);
     setVideos(results);
     setIsLoading(false);
   };
 
   const handleInputChange = (query) => {
     setSearchInput(query);
-    setShowDropdown(query.length > 0);
   };
-
-  const handleThresholdChange = (threshold) => {
-    setSelectedThreshold(threshold);
-  };  
 
   const handleVideoSelect = (video) => {
     setSelectedVideo(video);
+  };
+
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
   };
 
   return (
@@ -88,25 +90,12 @@ const App = () => {
         onSearch={handleSearch} 
         onInputChange={handleInputChange}
       />
-      <div className="threshold-buttons">
-        <button 
-          className={`threshold-button ${selectedThreshold === 'low' ? 'selected' : ''}`}
-          onClick={() => handleThresholdChange('low')}
-        >
-          Low Sensitivity
-        </button>
-        <button 
-          className={`threshold-button ${selectedThreshold === 'medium' ? 'selected' : ''}`}
-          onClick={() => handleThresholdChange('medium')}
-        >
-          Medium Sensitivity
-        </button>
-        <button 
-          className={`threshold-button ${selectedThreshold === 'high' ? 'selected' : ''}`}
-          onClick={() => handleThresholdChange('high')}
-        >
-          High Sensitivity
-        </button>
+      <div className="category-dropdown">
+        <select value={selectedCategory} onChange={handleCategoryChange}>
+          {categories.map((category) => (
+            <option key={category} value={category}>{category}</option>
+          ))}
+        </select>
       </div>
       {isLoading ? (
         <LoadingSpinner />
