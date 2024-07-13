@@ -19,11 +19,13 @@
 @media (max-width: 768px) {
   .video-grid {
     grid-template-columns: repeat(2, 1fr);
+    width: 95%;
   }
 }
 
 @media (max-width: 480px) {
   .video-grid {
     grid-template-columns: 1fr;
+    width: 95%;
   }
 }
