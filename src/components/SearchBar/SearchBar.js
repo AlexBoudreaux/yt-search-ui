@@ -1,21 +1,20 @@
 // src/SearchBar.js
 
-import React, { useState } from 'react';
+import React from 'react';
+import './SearchBar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-const SearchBar = ({ onSearch, onInputChange }) => {
-    const [query, setQuery] = useState('');
-    
+const SearchBar = ({ onSearch, onInputChange, currentQuery }) => {
     const handleSubmit = (e) => {
       e.preventDefault();
-      onSearch(query);
+      if (currentQuery.trim() !== '') {
+        onSearch(currentQuery);
+      }
     };
 
     const handleInputChange = (e) => {
-      const newQuery = e.target.value;
-      setQuery(newQuery);
-      onInputChange(newQuery);
+      onInputChange(e.target.value);
     };
   
     return (
@@ -24,13 +23,15 @@ const SearchBar = ({ onSearch, onInputChange }) => {
           <FontAwesomeIcon icon={faSearch} className="search-icon" /> 
           <input
             type="text"
-            value={query}
+            value={currentQuery}
             onChange={handleInputChange}
             placeholder="Search for recipes..."
             className="search-input"
             autoFocus
           />
-          <button type="submit" className="search-button">Search</button>
+          <button type="submit" className="search-button" disabled={currentQuery.trim() === ''}>
+            Search
+          </button>
         </form>
       </div>
     );

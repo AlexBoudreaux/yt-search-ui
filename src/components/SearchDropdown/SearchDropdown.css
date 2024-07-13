@@ -1,0 +1,39 @@
+/* src/components/SearchDropdown/SearchDropdown.css */
+
+.category-dropdown {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.category-dropdown select {
+  padding: 10px 60px 10px 40px;
+  font-size: 16px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #F2F3F6, #E5E6EC);
+  box-shadow: 5px 5px 7px #bebebe, -5px -5px 7px #ffffff;
+  color: #757575;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%23757575' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 20px;
+}
+
+.category-dropdown select:hover {
+  box-shadow: inset 3px 3px 3px #d1d1d1, inset -3px -3px 3px #ffffff;
+}
+
+.category-dropdown select:focus {
+  outline: none;
+  box-shadow: inset 3px 3px 3px #d1d1d1, inset -3px -3px 3px #ffffff;
+}
+
+.category-dropdown select::-ms-expand {
+  display: none;
+}

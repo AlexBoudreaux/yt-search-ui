@@ -2,13 +2,13 @@
 
 import './App.css';
 import React, { useState, useEffect, useRef } from 'react';
-import SearchBar from './SearchBar';
-import VideoDisplay from './VideoDisplay';
-import RecipeDetails from './RecipeDetails';
+import SearchBar from './components/SearchBar/SearchBar';
+import VideoDisplay from './components/VideoDisplay/VideoDisplay';
+import RecipeDetails from './components/RecipeDetails/RecipeDetails';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
-import LoadingSpinner from './LoadingSpinner';
+import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 import axios from 'axios';
 
 const apiUrl = "https://yt-search-api-rust.vercel.app/";
@@ -51,6 +51,25 @@ const App = () => {
 
   useEffect(() => {
     checkServerHealth();
+    const app = document.querySelector('.App');
+  
+    const handleScroll = (event) => {
+      const { scrollTop, scrollHeight, clientHeight } = app;
+      
+      if (scrollTop === 0) {
+        // At the top
+        app.scrollTop = 1;
+      } else if (scrollTop + clientHeight === scrollHeight) {
+        // At the bottom
+        app.scrollTop = scrollTop - 1;
+      }
+    };
+
+    app.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      app.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -58,6 +77,7 @@ const App = () => {
   }, [allVideos, currentSearch.displayCount]);
 
   const handleSearch = async (query) => {
+    if (query.trim() === '') return; // Prevent empty searches
     setIsLoading(true);
     setSearchMade(true);
     setSelectedVideo(null);
@@ -107,6 +127,7 @@ const App = () => {
       <SearchBar 
         onSearch={handleSearch} 
         onInputChange={handleInputChange}
+        currentQuery={currentSearch.query}
       />
       <div className="category-dropdown">
         <select value={selectedCategory} onChange={handleCategoryChange}>

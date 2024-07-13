@@ -1,10 +1,13 @@
+/* src/App.css */
+
 body, html {
   margin: 0;
   padding: 0;
   font-family: 'Inter', sans-serif;
-  height: 100%; /* Ensure the gradient covers the full height */
-  background: linear-gradient(to bottom right, #F8F8FC, #E1E2E8); /* Diagonal gradient */
-  background-attachment: fixed; /* Add this line to fix the background */
+  height: 100%;
+  background: linear-gradient(to bottom right, #F8F8FC, #E1E2E8);
+  background-attachment: fixed;
+  overflow: auto;
 }
 
 #root, .App {
@@ -13,14 +16,17 @@ body, html {
   flex-direction: column;
   align-items: center;
   position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
+/* Header styles */
 .app-header {
   width: 90vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  justify-content: left;
   padding: 15px;
   font-size: 24px;
   text-align: center;
@@ -37,7 +43,7 @@ body, html {
   background: linear-gradient(145deg, #F2F3F6, #E5E6EC);
   box-shadow: inset 3px 3px 3px #d1d1d1,
               inset -3px -3px 3px #ffffff;
-  margin-right: 20px; /* Space between icon and text */
+  margin-right: 20px;
 }
 
 .user-icon-container {
@@ -49,7 +55,7 @@ body, html {
   border-radius: 20px;
   background: linear-gradient(-145deg, #F2F3F6, #E5E6EC);
   box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
-  margin-left: auto; /* This will push the icon to the right side of the header */
+  margin-left: auto;
 }
 
 .user-icon-container:hover {
@@ -59,103 +65,23 @@ body, html {
 }
 
 .user-icon-link {
-  text-decoration: none; /* Removes underline from link */
-  color: inherit; /* Keeps the icon color consistent */
-  display: flex; /* Ensures the link does not disrupt the layout */
-  align-items: center; /* Center the icon vertically */
-  justify-content: center; /* Center the icon horizontally */
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .divider {
   width: 100%;
   height: 1px;
-  background-color: #757575; /* Divider color */
+  background-color: #757575;
   margin-bottom: 15px;
   margin-top: 5px;
   box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.35);
 }
 
-.search-bar-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 120px; /* Increased height for a prominent look */
-  width: 100%;
-  position: relative;
-}
-
-.search-bar {
-  width: 40vw;
-  display: flex;
-  align-items: center; /* Align children vertically in the center */
-  justify-content: flex-start; /* Start children from the beginning */
-  background: linear-gradient(170deg, #F2F3F6, #E5E6EC);
-  border-radius: 40px;
-  box-shadow: 5px 5px 7px #bebebe, -5px -5px 7px #ffffff;
-  margin: 0 auto;
-  padding-left: 25px; /* Add padding to the left for the icon */
-}
-
-.search-icon {
-  color: #757575;
-}
-
-.search-input {
-  flex: 1;
-  padding: 15px 20px;
-  font-size: 18px; /* Larger font size for emphasis */
-  border: none;
-  border-radius: 30px; /* Rounded corners */
-  background: inherit; /* Inherits the neumorphic design */
-  color: #757575; /* Darker text for better readability */
-}
-
-.search-input:focus {
-  outline: none; /* Removes the default focus outline */
-}
-
-.search-button {
-  padding: 15px 25px;
-  font-size: 18px;
-  border: none;
-  border-radius: 30px; /* Rounded corners */
-  background: linear-gradient(145deg, #E5E6EC , #F2F3F6); /* Match the body background */
-  box-shadow: inset 3px 3px 3px #d1d1d1,
-              inset -3px -3px 3px #ffffff;
-  color: #757575; /* Darker text for better readability */
-  cursor: pointer;
-  margin: 6px;
-  transition: box-shadow 0.3s ease, color 0.3s ease;
-}
-
-.search-button:hover {
-  box-shadow: inset 6px 6px 6px #d1d1d1,
-              inset -6px -6px 6px #ffffff; /* Slightly darker background on hover */
-  color: #585858
-}
-
-.threshold-buttons {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-
-.threshold-button {
-  background: linear-gradient(-145deg, #F2F3F6, #F2F3F6, #E5E6EC);
-  border: none;
-  border-radius: 20px;
-  box-shadow: 5px 5px 7px #bebebe, -5px -5px 7px #ffffff;
-  padding: 10px 20px;
-  margin: 0 10px;
-  cursor: pointer;
-  color: #757575;
-  transition: box-shadow 0.3s ease, background 0.3s ease; /* Add transition for background */
-}
-
-.threshold-button.selected {
-  background: linear-gradient(145deg, #E5E6EC, #F2F3F6);
-  box-shadow: inset 3px 3px 3px #d1d1d1, inset -3px -3px 3px #ffffff;
-}
+/* Category dropdown styles */
 .category-dropdown {
   display: flex;
   justify-content: center;
@@ -163,7 +89,7 @@ body, html {
 }
 
 .category-dropdown select {
-  padding: 10px 60px 10px 40px; /* Increased right padding */
+  padding: 10px 60px 10px 40px;
   font-size: 16px;
   border: none;
   border-radius: 20px;
@@ -172,16 +98,12 @@ body, html {
   color: #757575;
   cursor: pointer;
   transition: box-shadow 0.3s ease;
-  
-  /* Remove default arrow */
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-
-  /* Add custom arrow */
   background-image: url("data:image/svg+xml;utf8,<svg fill='%23757575' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
   background-repeat: no-repeat;
-  background-position: right 15px center; /* Adjust this value to move the arrow */
+  background-position: right 15px center;
   background-size: 20px;
 }
 
@@ -194,15 +116,32 @@ body, html {
   box-shadow: inset 3px 3px 3px #d1d1d1, inset -3px -3px 3px #ffffff;
 }
 
-/* Hide the arrow in IE10 and IE11 */
 .category-dropdown select::-ms-expand {
   display: none;
+}
+
+/* Footer styles */
+.footer {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #757575;
+}
+
+/* Global styles for buttons, if any */
+button {
+  cursor: pointer;
 }
 
 .load-more-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 100px;
+  margin-bottom: 120px;
+  margin-top: -20px;
 }
 
 .load-more-button {
@@ -227,172 +166,45 @@ body, html {
   outline: none;
 }
 
-.video-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Three columns */
-  gap: 25px; /* Space between cards */
-  padding: 20px;
-  width: 100%;
-  max-width: 1200px; /* Maximum width of the grid */
-  margin-bottom: 50px;
-  /* margin: auto; Center the grid */
+::-webkit-scrollbar {
+  width: 20px;
 }
 
-.video-card {
-  position: relative;
-  background: linear-gradient(145deg, #F2F3F6, #E5E6EC); /* Diagonal gradient */
-  border-radius: 15px;
-  box-shadow: 5px 5px 7px #bebebe, /* Soft outer shadow */
-              -5px -5px 5px #ffffff;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  height: 320px;
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  margin: 16px;
 }
 
-.video-card-info {
-  padding: 0px 20px 20px 20px;
-}
-
-.video-title {
-  margin: 10px 0;
-  font-weight: bold;
-  color: #757575;
-  display: -webkit-box;
-  -webkit-line-clamp: 2; /* Limit to two lines */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.video-creator {
-  color: #717c8c;
-}
-
-.video-thumbnail {
-  width: 100%; /* Make the thumbnail span the full width of the card */
-  border-top-left-radius: 15px; /* Rounded top corners */
-  border-top-right-radius: 15px; /* Match the card's border-radius */
-  height: 214px; /* Fixed height, adjust as needed */
-  object-fit: cover; /* This will crop the image to fit the container */
-}
-
-.video-card-link {
-  text-decoration: none; /* Removes underline from links */
-  color: inherit; /* Inherits the color from parent elements */
-}
-
-.youtube-icon-container {
-  width: 40px;
-  height: 40px;
-  color: #757575;
-  border-radius: 20px; /* Keeps it circular */
+::-webkit-scrollbar-thumb {
   background: linear-gradient(145deg, #E5E6EC, #F2F3F6);
-  box-shadow: inset 3px 3px 3px #d1d1d1,
-              inset -3px -3px 3px #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
+  border-radius: 10px;
+  background-clip: content-box;
+  border: 4px solid rgba(0, 0, 0, 0);
+  box-shadow: 
+    inset -2px -2px 3px rgba(255, 255, 255, .9),
+    inset 2px 2px 3px rgba(0, 0, 0, 0.2);
 }
 
-.no-videos-message {
-  background: linear-gradient(145deg, #F2F3F6, #E5E6EC);
-  border-radius: 20px;
-  box-shadow: 5px 5px 7px #bebebe, -5px -5px 7px #ffffff;
-  padding: 20px 40px;
-  margin: 150px;
-  text-align: center;
-  font-size: 1.5em;
-  color: #757575;
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(145deg, #e1e2e6, #E5E6EC);
 }
-
-.footer {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
-  padding: 10px;
-  text-align: center;
-  margin-bottom: 20px;
-  color: #757575;
-}
-
-
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .video-grid {
-    grid-template-columns: repeat(2, 1fr); /* Two columns for smaller screens */
-  }
-}
-
-@media (max-width: 480px) {
-  .video-grid {
-    grid-template-columns: 1fr; /* One column for very small screens */
-  }
-}
-
-
-@media (max-width: 768px) {
   .app-header {
-    width: 95vw; /* Slightly reduce the width for mobile screens */
+    width: 95vw;
     flex-direction: row;
-    justify-content: space-between; /* Ensure items are spaced out evenly */
+    justify-content: space-between;
     padding: 15px;
   }
 
   .youtube-icon-header,
-  .user-icon-header {
-    width: 50px; /* Reduce the size for mobile */
+  .user-icon-container {
+    width: 50px;
     height: 50px;
-  }
-
-  .search-bar-container {
-    flex-direction: column; /* Stack input and button */
-    align-items: center; /* Center-align the children */
-    width: 90vw; /* Set width to 90% of the viewport width */
-    margin-top: 10px; /* Add some space above the search bar */
-  }
-
-  .search-bar {
-    width: 90vw; /* Set width to 90% of the viewport width */
-    margin-bottom: 0px; /* Add some space between the search bar and button */
-  }
-
-  .search-input {
-    width: 100%; /* Make the input take full width of its container */
-  }
-
-  .search-button {
-    width: 25vw; /* Set width to 90% of the viewport width */
-  }
-
-  .threshold-buttons {
-    flex-direction: column; /* Stack buttons vertically */
-    align-items: center; /* Center buttons vertically */
-  }
-
-  .threshold-button {
-    width: 80vw; /* Full width buttons on mobile */
-    margin: 8px 0; /* Add margin between buttons */
-  }
-
-  .video-grid {
-    grid-template-columns: 1fr; /* One column grid layout */
-    padding: 15px; /* Adjust padding for mobile */
-    gap: 15px; /* Reduce gap between cards */
-  }
-
-  .video-card {
-    height: auto; /* Adjust height to fit content */
-  }
-
-  .video-card-info,
-  .youtube-icon-container {
-    padding: 10px; /* Adjust padding for mobile */
   }
 }
 
+@media (max-width: 480px) {
+  /* Add any global responsive styles for smaller screens */
+}

@@ -1,0 +1,234 @@
+/* src/components/ExpandedVideoCard/ExpandedVideoCard.css */
+
+.expanded-video-card {
+  background: linear-gradient(145deg, #F2F3F6, #E5E6EC);
+  border-radius: 15px;
+  box-shadow: 5px 5px 7px #bebebe, -5px -5px 5px #ffffff;
+  padding: 20px;
+  padding-top: 1px;
+  color: #757575;
+}
+
+.expanded-header {
+  border-bottom: 1px solid #d1d1d1;
+  padding-bottom: 15px;
+}
+
+.expanded-title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #5a616b;
+}
+
+.expanded-creator {
+  font-size: 1em;
+  margin-bottom: 5px;
+}
+
+.expanded-category {
+  font-size: 0.9em;
+}
+
+.expanded-description, .expanded-recipe {
+  margin-top: 20px;
+}
+
+.expanded-description h3, .expanded-recipe h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  color: #5a616b;
+}
+
+.expanded-description p {
+  line-height: 1.5;
+}
+
+.recipe-cards-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  padding-right: 6px;
+  margin-right: -3px;
+}
+
+.recipe-card {
+  background: linear-gradient(145deg, #F2F3F6, #E5E6EC);
+  border-radius: 10px;
+  box-shadow: 3px 3px 5px #bebebe, -3px -3px 5px #ffffff;
+  padding: 15px;
+  flex: 1;
+  min-width: 250px;
+  max-width: calc(33.333% - 14px);
+  height: 300px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.recipe-card.expanded {
+  height: auto;
+}
+
+.recipe-card h4 {
+  color: #5a616b;
+  margin-bottom: 10px;
+}
+
+.recipe-content {
+  overflow-y: auto;
+  flex-grow: 1;
+  padding-right: 10px;
+  margin-right: -10px;
+  position: relative;
+}
+
+.recipe-card ul, .recipe-card ol {
+  padding-left: 20px;
+}
+
+.recipe-card li {
+  margin-bottom: 5px;
+}
+
+.recipe-card p {
+  margin-bottom: 10px;
+}
+
+.recipe-card strong {
+  font-weight: bold;
+}
+
+.button-container {
+  position: relative;
+  margin-top: 10px;
+}
+
+.button-container.show-shadow::before {
+  opacity: 1;
+}
+
+.expand-button {
+  background: none;
+  border: none;
+  color: #5a616b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  width: 100%;
+  transition: background-color 0.3s;
+  position: relative;
+  z-index: 1;
+}
+
+.expand-button:hover {
+  color: #303135;
+}
+
+.expand-button svg {
+  margin-right: 5px;
+}
+
+.recipe-content::-webkit-scrollbar {
+  width: 14px;
+}
+
+.recipe-content::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+.recipe-content::-webkit-scrollbar-thumb {
+  background: linear-gradient(145deg, #E5E6EC, #F2F3F6);
+  border-radius: 10px;
+  background-clip: content-box;
+  box-shadow: 
+    inset -2px -2px 3px rgba(255, 255, 255, .75),
+    inset 2px 2px 3px rgba(0, 0, 0, 0.13);
+}
+
+.recipe-content::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(145deg, #e1e2e6, #E5E6EC);
+}
+
+.recipe-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.recipe-card-header h4 {
+  margin: 0;
+}
+
+.copy-button {
+  background: linear-gradient(145deg, #F2F3F6, #E5E6EC);
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.3),
+    -3px -3px 4px rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.copy-button:hover {
+  background: linear-gradient(145deg, #E5E6EC, #F2F3F6);
+}
+
+.copy-button:active {
+  box-shadow: 
+    inset 2px 2px 5px rgba(0, 0, 0, 0.1),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.5);
+}
+
+.copy-button svg {
+  color: #5a616b;
+  font-size: 14px;
+  position: absolute;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.copy-button .fa-copy {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.copy-button .fa-check {
+  color: #4CAF50;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.copy-button.copied .fa-copy {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.copy-button.copied .fa-check {
+  color: #4CAF50;
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media (max-width: 768px) {
+  .recipe-cards-container {
+    flex-direction: column;
+  }
+
+  .recipe-card {
+    max-width: 100%;
+  }
+}
