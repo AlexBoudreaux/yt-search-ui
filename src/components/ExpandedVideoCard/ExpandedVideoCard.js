@@ -1,9 +1,10 @@
 // src/components/ExpandedVideoCard/ExpandedVideoCard.js
 import React, { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faChevronDown, faChevronUp, faCopy, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faChevronDown, faChevronUp, faCopy, faCheck, faTrash, faTimes } from '@fortawesome/free-solid-svg-icons';
 import ReactMarkdown from 'react-markdown';
 import './ExpandedVideoCard.css';
+import axios from 'axios';
 
 const RecipeCard = ({ title, content }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -60,7 +61,7 @@ const RecipeCard = ({ title, content }) => {
   );
 };
 
-const ExpandedVideoCard = ({ video }) => {
+const ExpandedVideoCard = ({ video, onDelete }) => {
   const recipe = video.recipe;
   const sections = recipe.split('**Steps:**');
   const [topSection, stepsAndNotes] = sections;
@@ -71,10 +72,60 @@ const ExpandedVideoCard = ({ video }) => {
     .replace(/^[\s\S]*?\n\*\s/m, '* ') // Remove everything up to the first list item
     .trim();
 
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const handleDeleteClick = () => {
+    setIsDeleting(true);
+    setTimeout(() => setShowDeleteConfirmation(true), 10);
+  };
+
+  const apiUrl = "https://yt-search-api-rust.vercel.app";
+
+  const handleConfirmDelete = async () => {
+    try {
+      const response = await axios.delete(`${apiUrl}/remove_video/${video.video_id}`);
+      if (response.status === 200) {
+        console.log('Video deleted successfully');
+        onDelete(video.video_id); // Notify parent component about the deletion
+      } else {
+        console.error('Failed to delete video');
+      }
+    } catch (error) {
+      console.error('Error deleting video:', error);
+    }
+    setShowDeleteConfirmation(false);
+    setTimeout(() => setIsDeleting(false), 300);
+  };
+
+  const handleCancelDelete = () => {
+    setShowDeleteConfirmation(false);
+    setTimeout(() => setIsDeleting(false), 300);
+  };
+
   return (
     <div className="expanded-video-card">
       <div className="expanded-header">
-        <h2 className="expanded-title">{video.video_name}</h2>
+        <div className="title-and-delete">
+          <h2 className="expanded-title">{video.video_name}</h2>
+          <div className={`delete-button-container ${isDeleting ? 'expanded' : ''}`}>
+            {!showDeleteConfirmation ? (
+              <button className="delete-button" onClick={handleDeleteClick}>
+                <FontAwesomeIcon icon={faTrash} />
+              </button>
+            ) : (
+              <>
+                <span className="delete-confirmation-text">Delete?</span>
+                <button className="confirm-delete-button" onClick={handleConfirmDelete}>
+                  <FontAwesomeIcon icon={faCheck} />
+                </button>
+                <button className="cancel-delete-button" onClick={handleCancelDelete}>
+                  <FontAwesomeIcon icon={faTimes} />
+                </button>
+              </>
+            )}
+          </div>
+        </div>
         <div className="expanded-creator">
           <FontAwesomeIcon icon={faUser} style={{ marginRight: '7px' }}/>
           {video.creator}

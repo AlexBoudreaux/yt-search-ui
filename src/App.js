@@ -110,6 +110,12 @@ const App = () => {
     setSelectedCategory(event.target.value);
   };
 
+  const handleVideoDelete = (deletedVideoId) => {
+    setAllVideos(prevVideos => prevVideos.filter(video => video.id !== deletedVideoId));
+    setDisplayedVideos(prevVideos => prevVideos.filter(video => video.id !== deletedVideoId));
+    setSelectedVideo(null);
+  };
+
   return (
     <div className="App">
       <header className="app-header">
@@ -152,7 +158,12 @@ const App = () => {
               </button>
             </div>
           )}
-          {selectedVideo && <RecipeDetails video={selectedVideo} />}
+          {selectedVideo && (
+            <RecipeDetails 
+              video={selectedVideo} 
+              onDelete={handleVideoDelete}
+            />
+          )}
         </>
       )}
       <footer className="footer">

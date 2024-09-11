@@ -5,19 +5,111 @@
   border-radius: 15px;
   box-shadow: 5px 5px 7px #bebebe, -5px -5px 5px #ffffff;
   padding: 20px;
-  padding-top: 1px;
   color: #757575;
 }
 
 .expanded-header {
   border-bottom: 1px solid #d1d1d1;
   padding-bottom: 15px;
+  position: relative;
+}
+
+.title-and-delete {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .expanded-title {
   font-size: 1.5em;
-  margin-bottom: 10px;
   color: #5a616b;
+  margin: 0;
+  padding-right: 10px;
+  flex-grow: 1;
+  word-break: break-word;
+}
+
+.delete-button-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(145deg, #F2F3F6, #E5E6EC);
+  border: 1px solid #ff4d4d;
+  border-radius: 20px;
+  height: 40px;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.3),
+    -3px -3px 4px rgba(255, 255, 255, 0.8);
+  width: 40px;
+  z-index: 10; 
+}
+
+.delete-button-container.expanded {
+  width: 150px;
+}
+
+.delete-confirmation-text {
+  flex-grow: 1;
+  text-align: center;
+  color: #ff4d4d;
+  font-size: 14px;
+  padding: 0 5px;
+}
+
+.confirm-delete-button,
+.cancel-delete-button {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.confirm-delete-button {
+  color: #4CAF50;
+}
+
+.cancel-delete-button {
+  color: #ff4d4d;
+}
+
+.delete-button svg,
+.confirm-delete-button svg,
+.cancel-delete-button svg {
+  font-size: 18px;
+}
+
+.delete-button:hover,
+.confirm-delete-button:hover,
+.cancel-delete-button:hover {
+  background: linear-gradient(145deg, #E5E6EC, #F2F3F6);
+}
+
+.delete-button:active,
+.confirm-delete-button:active,
+.cancel-delete-button:active {
+  box-shadow: 
+    inset 2px 2px 5px rgba(0, 0, 0, 0.1),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.5);
+}
+
+.delete-button-container.expanded .delete-confirmation-text,
+.delete-button-container.expanded .confirm-delete-button,
+.delete-button-container.expanded .cancel-delete-button {
+  opacity: 1;
+}
+
+.delete-button svg,
+.confirm-delete-button svg,
+.cancel-delete-button svg {
+  font-size: 18px;
 }
 
 .expanded-creator {
@@ -231,4 +323,49 @@
   .recipe-card {
     max-width: 100%;
   }
+
+  .title-and-delete {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .expanded-title {
+    margin-bottom: 10px;
+  }
+
+  .delete-button-container {
+    align-self: flex-end;
+  }
+}
+
+.delete-button {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.delete-button svg {
+  color: #ff4d4d;
+  font-size: 18px;
+}
+
+.delete-button:hover {
+  background: linear-gradient(145deg, #E5E6EC, #F2F3F6);
+}
+
+.delete-button:active {
+  box-shadow: 
+    inset 2px 2px 5px rgba(0, 0, 0, 0.1),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.5);
+}
+
+/* Ensure the delete button is visible when not expanded */
+.delete-button-container:not(.expanded) .delete-button {
+  opacity: 1;
 }
